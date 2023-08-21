@@ -1,9 +1,6 @@
 'use client';
 
 import styled from 'styled-components';
-import { Sidebar } from '@shared-ui';
-import { ProSidebarProvider } from 'react-pro-sidebar';
-import { useStyleRegistry } from 'styled-jsx';
 
 const StyledPage = styled.div`
   .page {
@@ -18,9 +15,5 @@ export default async function Index() {
    *
    * Note: The corresponding styles are in the ./index.styled-components file.
    */
-  return (
-    <StyledPage>
-      <Sidebar />
-    </StyledPage>
-  );
+  return <StyledPage>test</StyledPage>;
 }

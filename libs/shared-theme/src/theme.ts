@@ -1,8 +1,16 @@
 import { createTheme } from '@mui/material';
 import { grey, primary, secondary } from './color-tokens';
+import { Roboto } from 'next/font/google';
 
-export const lightTheme = createTheme({
+const roboto = Roboto({
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+const theme = createTheme({
   palette: {
+    mode: 'light',
     primary: {
       main: primary.main,
     },
@@ -12,6 +20,9 @@ export const lightTheme = createTheme({
     grey: {
       '100': grey[100],
     },
+  },
+  typography: {
+    fontFamily: roboto.style.fontFamily,
   },
   components: {
     MuiMenuItem: {
@@ -26,3 +37,4 @@ export const lightTheme = createTheme({
     },
   },
 });
+export default theme;
