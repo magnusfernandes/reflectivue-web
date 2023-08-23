@@ -19,7 +19,7 @@ export const NavigationBar = ({ menuItems, logo }: NavigationBarProps) => {
         color={'#3d4d59'}
         fontWeight={'bold'}
         textTransform={'uppercase'}
-        mt={2}
+        mt={4}
       >
         {menuItems[0].title}
       </Typography>

@@ -1,4 +1,10 @@
 import {
+  ArrowDownward,
+  ChevronRight,
+  ChevronRightSharp,
+} from '@mui/icons-material';
+import {
+  Avatar,
   Box,
   IconButton,
   Menu,
@@ -16,7 +22,7 @@ export const useStyles = makeStyles(() => {
   return {
     main: {
       display: 'flex',
-      padding: '1rem',
+      padding: '1rem 2rem',
       width: '100%',
       height: '70px',
       marginLeft: 'auto',
@@ -73,14 +79,6 @@ export const TopBar = () => {
 
   return (
     <Box className={classes.main}>
-      <Box>
-        <Typography fontSize={'12px'} color={'#3d4d59'}>
-          Welcome
-        </Typography>
-        <Typography fontSize={'14px'} color={'#3d4d59'}>
-          Broklyn Simmons
-        </Typography>
-      </Box>
       <Box className={classes.dropdown} onClick={handleClick}>
         <Box>
           <Typography
@@ -97,6 +95,25 @@ export const TopBar = () => {
         </Box>
         <Box display={'flex'}>
           <TwoWayArrowIcon />
+        </Box>
+      </Box>
+      <Box display={'flex'} alignItems={'center'} gap={1}>
+        <Avatar
+          sx={{
+            width: '30px',
+            height: '30px',
+            fontSize: '14px',
+          }}
+        >
+          M
+        </Avatar>
+        <Box>
+          <Typography fontSize={'12px'} color={'#3d4d59'}>
+            Magnus Fernades
+          </Typography>
+          <Typography fontSize={'10px'} color={'#b2b4b6'}>
+            magnusfernandes1295@gmail.com
+          </Typography>
         </Box>
       </Box>
       <StyledMenu

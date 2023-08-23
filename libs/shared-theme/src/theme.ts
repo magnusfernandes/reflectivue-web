@@ -13,13 +13,13 @@ import {
 import { overrideMap } from './maps/overrides';
 
 export const theme: Theme = createTheme({
-  breakpoints,
-  palette: light,
-  shadows,
-  typography,
-  spacing,
-  shape,
-  transitions,
-  zIndex,
+  // breakpoints,
+  // palette: light,
+  // shadows,
+  // typography,
+  // spacing,
+  // shape,
+  // transitions,
+  // zIndex,
   components: overrideMap(light),
 });

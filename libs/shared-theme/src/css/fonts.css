@@ -23,7 +23,7 @@
   font-family: 'DMSans';
   font-style: normal;
   font-weight: 600;
-  src: url('../fonts/DMSans-SemiBold.woff2') format('woff2');
+  src: url('../fonts/DMSans-Medium.woff') format('woff2');
 }
 
 @font-face {
@@ -34,8 +34,8 @@
 }
 
 @font-face {
-  font-family: 'SourceSansPro', sans-serif;
+  font-family: 'DMSans', sans-serif;
   font-style: normal;
   font-weight: 900;
-  src: url('../fonts/DMSans-Black.woff2') format('woff2');
+  src: url('../fonts/DMSans-Bold.woff') format('woff2');
 }

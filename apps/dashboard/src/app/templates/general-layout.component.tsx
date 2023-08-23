@@ -72,8 +72,8 @@ export const GeneralLayout = () => {
           display={'flex'}
           flexDirection={'column'}
           flexGrow={1}
-          pr={'8.5rem'}
-          px={'1.5rem'}
+          p={2}
+          pt={3}
           overflow="auto"
           height="calc(100vh - 6.75rem)"
         >
