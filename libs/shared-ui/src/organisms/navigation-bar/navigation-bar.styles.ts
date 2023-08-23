@@ -11,7 +11,7 @@ export const useStyles = makeStyles((theme: Theme) => {
       borderRight: '0.5px solid #eeeff2',
       zIndex: 2,
       padding: '1rem',
-      width: '210px',
+      width: '250px',
       backgroundColor: '#fff',
     },
     navBarSection: { display: 'flex', flexDirection: 'column', gap: '10px' },

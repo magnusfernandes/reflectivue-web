@@ -1,4 +1,4 @@
-import { Box, Divider, Typography } from '@mui/material';
+import { Box, Divider, Typography, capitalize } from '@mui/material';
 
 import { useStyles } from './navigation-bar.styles';
 import { NavLink } from 'react-router-dom';
@@ -15,9 +15,10 @@ export const NavigationBar = ({ menuItems, logo }: NavigationBarProps) => {
     <Box className={classes.navigationBarContainer}>
       <img src={logo} width={'50px'} height={'50px'} />
       <Typography
-        fontSize={'12px'}
+        fontSize={'10px'}
         color={'#3d4d59'}
-        fontWeight={'semibold'}
+        fontWeight={'bold'}
+        textTransform={'uppercase'}
         mt={2}
       >
         {menuItems[0].title}
@@ -41,10 +42,11 @@ export const NavigationBar = ({ menuItems, logo }: NavigationBarProps) => {
       <Box mt={2} className={classes.navBarSection}>
         <Divider />
         <Typography
-          fontSize={'12px'}
+          fontSize={'10px'}
           color={'#3d4d59'}
-          fontWeight={'semibold'}
+          fontWeight={'bold'}
           mt={1}
+          textTransform={'uppercase'}
         >
           {menuItems[1].title}
         </Typography>
