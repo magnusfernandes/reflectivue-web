@@ -1,9 +1,16 @@
-import { Box, IconButton, Typography } from '@mui/material';
+import {
+  Box,
+  IconButton,
+  Menu,
+  MenuItem,
+  MenuProps,
+  Typography,
+  styled,
+} from '@mui/material';
 
 import makeStyles from '@mui/styles/makeStyles';
 import { TwoWayArrowIcon } from '@shared-ui';
-import SettingsIcon from '@mui/icons-material/Settings';
-import HelpCenter from '@mui/icons-material/HelpCenterRounded';
+import { useState } from 'react';
 
 export const useStyles = makeStyles(() => {
   return {
@@ -27,12 +34,43 @@ export const useStyles = makeStyles(() => {
       alignItems: 'center',
       padding: '5px',
       margin: 'auto',
+      cursor: 'pointer',
     },
   };
 });
 
+const StyledMenu = styled((props: MenuProps) => (
+  <Menu
+    elevation={0}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'right',
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'right',
+    }}
+    {...props}
+  />
+))(({ theme }) => ({
+  '& .MuiPaper-root': {
+    marginTop: theme.spacing(1),
+    width: '180px',
+  },
+}));
+
 export const TopBar = () => {
   const classes = useStyles();
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <Box className={classes.main}>
       <Box>
@@ -43,7 +81,7 @@ export const TopBar = () => {
           Broklyn Simmons
         </Typography>
       </Box>
-      <Box className={classes.dropdown}>
+      <Box className={classes.dropdown} onClick={handleClick}>
         <Box>
           <Typography
             noWrap
@@ -61,6 +99,19 @@ export const TopBar = () => {
           <TwoWayArrowIcon />
         </Box>
       </Box>
+      <StyledMenu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={handleClose}>
+          <Typography fontSize="12px">option 1</Typography>
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Typography fontSize="12px">option 1</Typography>
+        </MenuItem>
+      </StyledMenu>
     </Box>
   );
 };

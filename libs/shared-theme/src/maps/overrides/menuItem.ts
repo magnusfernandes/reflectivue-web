@@ -17,7 +17,7 @@ export const menuItemStyles = (themePalette: any) => ({
         backgroundColor: themePalette.action?.hover,
       },
       boxShadow: 'none',
-      height: '3.6rem',
+      height: '40px',
     },
   },
 });
