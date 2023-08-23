@@ -1,50 +1,58 @@
-import NxWelcome from './nx-welcome';
-
-import { Route, Routes, Link } from 'react-router-dom';
+import {
+  RouteObject,
+  RouterProvider,
+  createBrowserRouter,
+} from 'react-router-dom';
+import { RouterPath } from './pages/routes-path';
+import { GeneralLayout } from './templates';
+import {
+  DashboardPage,
+  DevicesPage,
+  KiosksPage,
+  LocationsPage,
+  OrganisationPage,
+  UsersPage,
+} from './pages';
 
 export function App() {
-  return (
-    <div>
-      <NxWelcome title="dashboard" />
+  const privateRoutes: RouteObject[] = [
+    {
+      path: RouterPath.home,
+      errorElement: <>error page</>,
+      element: <GeneralLayout />,
+      children: [
+        {
+          index: true,
+          path: RouterPath.dashboard,
+          element: <DashboardPage />,
+        },
+        {
+          path: RouterPath.users,
+          element: <UsersPage />,
+        },
+        {
+          path: RouterPath.organisation,
+          element: <OrganisationPage />,
+        },
+        {
+          path: RouterPath.kiosks,
+          element: <KiosksPage />,
+        },
+        {
+          path: RouterPath.locations,
+          element: <LocationsPage />,
+        },
+        {
+          path: RouterPath.devices,
+          element: <DevicesPage />,
+        },
+      ],
+    },
+  ];
 
-      {/* START: routes */}
-      {/* These routes and navigation have been generated for you */}
-      {/* Feel free to move and update them to fit your needs */}
-      <br />
-      <hr />
-      <br />
-      <div role="navigation">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/page-2">Page 2</Link>
-          </li>
-        </ul>
-      </div>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div>
-              This is the generated root route.{' '}
-              <Link to="/page-2">Click here for page 2.</Link>
-            </div>
-          }
-        />
-        <Route
-          path="/page-2"
-          element={
-            <div>
-              <Link to="/">Click here to go back to root page.</Link>
-            </div>
-          }
-        />
-      </Routes>
-      {/* END: routes */}
-    </div>
-  );
+  const router = createBrowserRouter(privateRoutes);
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;

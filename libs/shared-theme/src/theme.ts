@@ -1,40 +1,25 @@
-import { createTheme } from '@mui/material';
-import { grey, primary, secondary } from './color-tokens';
-import { Roboto } from 'next/font/google';
+import { createTheme, Theme } from '@mui/material/styles';
 
-const roboto = Roboto({
-  weight: ['300', '400', '500', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-});
+import {
+  breakpoints,
+  light,
+  shadows,
+  typography,
+  spacing,
+  shape,
+  transitions,
+  zIndex,
+} from './maps';
+import { overrideMap } from './maps/overrides';
 
-const theme = createTheme({
-  palette: {
-    mode: 'light',
-    primary: {
-      main: primary.main,
-    },
-    secondary: {
-      main: secondary.main,
-    },
-    grey: {
-      '100': grey[100],
-    },
-  },
-  typography: {
-    fontFamily: roboto.style.fontFamily,
-  },
-  components: {
-    MuiMenuItem: {
-      styleOverrides: {
-        selected: primary.main,
-      },
-    },
-    MuiIcon: {
-      styleOverrides: {
-        colorPrimary: primary.main,
-      },
-    },
-  },
+export const theme: Theme = createTheme({
+  breakpoints,
+  palette: light,
+  shadows,
+  typography,
+  spacing,
+  shape,
+  transitions,
+  zIndex,
+  components: overrideMap(light),
 });
-export default theme;
