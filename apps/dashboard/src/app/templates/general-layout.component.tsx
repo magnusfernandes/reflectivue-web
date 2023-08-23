@@ -46,6 +46,7 @@ export const GeneralLayout = () => {
       ],
     },
     {
+      title: 'Account',
       items: [
         { name: 'Settings', href: '/kiosks', icon: SettingsIcon },
         { name: 'Support', href: '/kiosks', icon: SupportIcon },

@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Divider, Typography } from '@mui/material';
 
 import { useStyles } from './navigation-bar.styles';
 import { NavLink } from 'react-router-dom';
@@ -15,7 +15,7 @@ export const NavigationBar = ({ menuItems, logo }: NavigationBarProps) => {
     <Box className={classes.navigationBarContainer}>
       <img src={logo} width={'50px'} height={'50px'} />
       <Typography
-        fontSize={'14px'}
+        fontSize={'12px'}
         color={'#3d4d59'}
         fontWeight={'semibold'}
         mt={2}
@@ -38,7 +38,16 @@ export const NavigationBar = ({ menuItems, logo }: NavigationBarProps) => {
           </NavLink>
         ))}
       </Box>
-      <Box mt={'auto'} className={classes.navBarSection}>
+      <Box mt={2} className={classes.navBarSection}>
+        <Divider />
+        <Typography
+          fontSize={'12px'}
+          color={'#3d4d59'}
+          fontWeight={'semibold'}
+          mt={1}
+        >
+          {menuItems[1].title}
+        </Typography>
         {menuItems[1].items.map((route: any) => (
           <NavLink
             key={route.href}

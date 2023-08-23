@@ -11,6 +11,7 @@ import { paperStyles } from './paper';
 import { selectStyles } from './select';
 import { switchStyles } from './switch';
 import { tooltipStyles } from './tooltip';
+import { dividerStyles } from './divider';
 import { typographyStyles } from './typography';
 
 export const overrideMap = (themePalette: any) => ({
@@ -28,4 +29,5 @@ export const overrideMap = (themePalette: any) => ({
   MuiDialog: dialogStyles(themePalette),
   MuiAccordion: accordionStyles(),
   MuiInputBase: inputStyles(themePalette),
+  MuiDivider: dividerStyles(themePalette),
 });
