@@ -13,6 +13,7 @@ import {
   OrganisationPage,
   UsersPage,
 } from './pages';
+import { UserFormPage } from './pages/users/user-form.page';
 
 export function App() {
   const privateRoutes: RouteObject[] = [
@@ -29,6 +30,14 @@ export function App() {
         {
           path: RouterPath.users,
           element: <UsersPage />,
+        },
+        {
+          path: RouterPath.userDetails,
+          element: <UserFormPage />,
+        },
+        {
+          path: RouterPath.userNew,
+          element: <UserFormPage />,
         },
         {
           path: RouterPath.organisation,

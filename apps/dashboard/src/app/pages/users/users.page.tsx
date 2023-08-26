@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import {
   DataGrid,
@@ -6,7 +5,10 @@ import {
   GridColDef,
   GridToolbar,
 } from '@mui/x-data-grid';
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import { RouterPath } from '../routes-path';
+import { SearchInput } from '@shared-ui';
 
 export const UsersPage = () => {
   const rows: GridRowsProp = [
@@ -23,9 +25,27 @@ export const UsersPage = () => {
   return (
     <Box>
       {/* @todo create a common component to display route */}
-      <Typography fontSize={'16px'} color={'#3d4d59'}>
+      <Typography fontSize={'18px'} color={'#3d4d59'} fontWeight={500}>
         Users
       </Typography>
+      <Box
+        width={'100%'}
+        display={'flex'}
+        justifyContent={'space-between'}
+        alignItems={'center'}
+        mt={5}
+      >
+        <SearchInput />
+        <Button
+          startIcon={<AddIcon />}
+          variant="contained"
+          size="small"
+          sx={{ marginLeft: 'auto' }}
+          href={RouterPath.userNew}
+        >
+          Add new user
+        </Button>
+      </Box>
       <Box sx={{ height: 520, width: '100%' }} mt={3}>
         <DataGrid
           rows={rows}

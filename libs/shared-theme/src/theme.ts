@@ -14,7 +14,7 @@ import { overrideMap } from './maps/overrides';
 
 export const theme: Theme = createTheme({
   // breakpoints,
-  // palette: light,
+  palette: light,
   // shadows,
   // typography,
   // spacing,
