@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { UsersForm } from '../../utils';
+import { UserForm } from '../../utils';
 import { UserEntrySchema } from './users.utils';
 import { NavLink } from 'react-router-dom';
 import { RouterPath } from '../routes-path';
@@ -12,7 +12,7 @@ export const UserFormPage = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<UsersForm>({
+  } = useForm<UserForm>({
     mode: 'onSubmit',
     resolver: zodResolver(UserEntrySchema),
   });

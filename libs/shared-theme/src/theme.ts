@@ -11,6 +11,7 @@ import {
   zIndex,
 } from './maps';
 import { overrideMap } from './maps/overrides';
+import { token } from './color-tokens';
 
 export const theme: Theme = createTheme({
   // breakpoints,

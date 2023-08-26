@@ -8,4 +8,5 @@ export enum RouterPath {
   kiosks = '/kiosks',
   devices = '/devices',
   locations = '/locations',
+  login = '/login',
 }

@@ -48,9 +48,9 @@ export const GeneralLayout = () => {
     {
       title: 'Account',
       items: [
-        { name: 'Settings', href: '/kiosks', icon: SettingsIcon },
-        { name: 'Support', href: '/kiosks', icon: SupportIcon },
-        { name: 'Logout', href: '/kiosks', icon: LogoutIcon },
+        { name: 'Settings', href: '/settings', icon: SettingsIcon },
+        { name: 'Support', href: '/support', icon: SupportIcon },
+        { name: 'Logout', href: '/login', icon: LogoutIcon },
       ],
     },
   ];

@@ -10,6 +10,7 @@ import {
   DevicesPage,
   KiosksPage,
   LocationsPage,
+  LoginPage,
   OrganisationPage,
   UsersPage,
 } from './pages';
@@ -56,6 +57,10 @@ export function App() {
           element: <DevicesPage />,
         },
       ],
+    },
+    {
+      path: RouterPath.login,
+      element: <LoginPage />,
     },
   ];
 

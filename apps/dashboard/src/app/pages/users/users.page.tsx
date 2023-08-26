@@ -9,8 +9,11 @@ import { Button, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { RouterPath } from '../routes-path';
 import { SearchInput } from '@shared-ui';
+import { useGetAllUsers } from '../../utils/data-hooks';
 
 export const UsersPage = () => {
+  const { data, isLoading, error } = useGetAllUsers();
+
   const rows: GridRowsProp = [
     { id: 1, col1: 'Hello', col2: 'World' },
     { id: 2, col1: 'DataGridPro', col2: 'is Awesome' },
@@ -25,6 +28,9 @@ export const UsersPage = () => {
     { field: 'col5', headerName: 'Created On', width: 150 },
     { field: 'col6', headerName: 'Action', width: 150 },
   ];
+
+  // if (isLoading) return <h1>Loading....</h1>;
+  // if (error) return <h1>Error loading data!!! {error.toString()}</h1>;
 
   return (
     <Box>

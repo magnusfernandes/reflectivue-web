@@ -4,3 +4,4 @@ export * from './organisations';
 export * from './users';
 export * from './dashboard';
 export * from './locations';
+export * from './login';

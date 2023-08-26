@@ -4,7 +4,6 @@ export const typography: TypographyOptions = {
   htmlFontSize: 10,
   fontFamily: 'DMSans, sans-serif',
   fontSize: 14,
-
   h1: {
     fontFamily: 'DMSans, sans-serif',
     fontWeight: 600,
