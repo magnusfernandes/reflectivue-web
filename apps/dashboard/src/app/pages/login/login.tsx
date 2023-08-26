@@ -16,11 +16,10 @@ import { Controller, useForm } from 'react-hook-form';
 import { loginFormSchema } from './login.schema';
 import { InputPhone } from '@shared-ui';
 import { NavLink } from 'react-router-dom';
-import { useMutation } from '@tanstack/react-query';
-import { makeRequest } from '../../utils/data-hooks';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useState } from 'react';
+import { useLogin } from '../../utils/data-hooks/auth';
 
 interface LoginForm {
   password: string;
@@ -29,6 +28,7 @@ interface LoginForm {
 
 export function LoginPage() {
   const theme = useTheme();
+  const loginMutation = useLogin();
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -39,12 +39,6 @@ export function LoginPage() {
     event.preventDefault();
   };
 
-  const loginMutation = useMutation({
-    mutationFn: (formData: LoginForm) => {
-      return makeRequest('/auth/login', 'POST', true, formData);
-    },
-  });
-
   const {
     handleSubmit,
     control,
@@ -52,15 +46,13 @@ export function LoginPage() {
   } = useForm({
     mode: 'all',
     defaultValues: {
-      phone: '',
-      password: '',
+      phone: '+919637078086',
+      password: 'changeme',
     },
     resolver: zodResolver(loginFormSchema),
   });
 
   const onSubmit = (data: LoginForm) => {
-    console.log(data);
-
     loginMutation.mutate(data);
   };
 
