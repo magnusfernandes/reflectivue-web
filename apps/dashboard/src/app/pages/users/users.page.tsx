@@ -18,8 +18,12 @@ export const UsersPage = () => {
   ];
 
   const columns: GridColDef[] = [
-    { field: 'col1', headerName: 'Column 1', width: 150 },
-    { field: 'col2', headerName: 'Column 2', width: 150 },
+    { field: 'col1', headerName: 'Name', width: 150 },
+    { field: 'col2', headerName: 'Email', width: 150 },
+    { field: 'col3', headerName: 'Phone', width: 150 },
+    { field: 'col4', headerName: 'Role', width: 150 },
+    { field: 'col5', headerName: 'Created On', width: 150 },
+    { field: 'col6', headerName: 'Action', width: 150 },
   ];
 
   return (
