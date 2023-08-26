@@ -1,11 +1,12 @@
 import 'react-phone-number-input/style.css';
 
-import { yupResolver } from '@hookform/resolvers/yup';
 import {
   Box,
   Button,
   Container,
   Grid,
+  IconButton,
+  InputAdornment,
   TextField,
   Typography,
   useTheme,
@@ -15,6 +16,11 @@ import { Controller, useForm } from 'react-hook-form';
 import { loginFormSchema } from './login.schema';
 import { InputPhone } from '@shared-ui';
 import { NavLink } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import { makeRequest } from '../../utils/data-hooks';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { useState } from 'react';
 
 interface LoginForm {
   password: string;
@@ -23,6 +29,22 @@ interface LoginForm {
 
 export function LoginPage() {
   const theme = useTheme();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+  };
+
+  const loginMutation = useMutation({
+    mutationFn: (formData: LoginForm) => {
+      return makeRequest('/auth/login', 'POST', true, formData);
+    },
+  });
+
   const {
     handleSubmit,
     control,
@@ -33,11 +55,13 @@ export function LoginPage() {
       phone: '',
       password: '',
     },
-    resolver: yupResolver(loginFormSchema),
+    resolver: zodResolver(loginFormSchema),
   });
 
   const onSubmit = (data: LoginForm) => {
     console.log(data);
+
+    loginMutation.mutate(data);
   };
 
   return (
@@ -86,7 +110,7 @@ export function LoginPage() {
                         onChange={onChange}
                         defaultCountry={'IN'}
                         error={!!errors.phone}
-                        helperText={errors.phone ? errors.phone.message : ' '}
+                        helperText={errors.phone ? errors.phone.message : null}
                       />
                     )}
                   />
@@ -97,7 +121,34 @@ export function LoginPage() {
                     name="password"
                     control={control}
                     render={({ field: { ref, onChange, ...field } }) => (
-                      <TextField type="password" fullWidth />
+                      <TextField
+                        fullWidth
+                        error={!!errors.password}
+                        helperText={
+                          errors.password ? errors.password.message : null
+                        }
+                        type={showPassword ? 'text' : 'password'}
+                        onChange={onChange}
+                        {...field}
+                        InputProps={{
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                                edge="end"
+                              >
+                                {showPassword ? (
+                                  <VisibilityOff />
+                                ) : (
+                                  <Visibility />
+                                )}
+                              </IconButton>
+                            </InputAdornment>
+                          ),
+                        }}
+                      />
                     )}
                   />
                 </Box>
