@@ -8,3 +8,8 @@ export enum RequestMethod {
   PATCH = 'PATCH',
   DELETE = 'DELETE',
 }
+
+export enum UserRoles {
+  admin = 'administrator',
+  endUser = 'end_user',
+}
