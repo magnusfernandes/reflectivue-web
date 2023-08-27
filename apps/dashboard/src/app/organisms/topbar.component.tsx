@@ -17,6 +17,7 @@ import {
 import makeStyles from '@mui/styles/makeStyles';
 import { TwoWayArrowIcon } from '@shared-ui';
 import { useState } from 'react';
+import { useValidate } from '../utils/data-hooks/auth';
 
 export const useStyles = makeStyles(() => {
   return {
@@ -68,6 +69,7 @@ const StyledMenu = styled((props: MenuProps) => (
 export const TopBar = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const { data } = useValidate();
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -105,14 +107,14 @@ export const TopBar = () => {
             fontSize: '14px',
           }}
         >
-          M
+          {data?.name[0]}
         </Avatar>
         <Box>
           <Typography fontSize={'12px'} color={'#3d4d59'}>
-            Magnus Fernades
+            {data?.name || ''}
           </Typography>
           <Typography fontSize={'10px'} color={'#b2b4b6'}>
-            magnusfernandes1295@gmail.com
+            {data?.email || ''}
           </Typography>
         </Box>
       </Box>

@@ -30,18 +30,23 @@ export const useValidate = () => {
     localStorage.removeItem(LocalStorage.token);
   };
 
-  useQuery({
+  const { data } = useQuery({
     queryKey: ['validate'],
     queryFn: async () => {
-      makeRequest('/auth/validate', RequestMethod.GET, true)
-        .then((res) => {
-          if (!res.message.user) {
-            invalidateUser();
-          }
-        })
-        .catch(() => invalidateUser());
+      const response = await makeRequest(
+        '/auth/validate',
+        RequestMethod.GET,
+        true
+      );
+
+      const data = await response?.message?.user;
+      if (!data) {
+        invalidateUser();
+      }
+      return data;
     },
     retry: false,
     refetchOnWindowFocus: false,
   });
+  return { data };
 };
