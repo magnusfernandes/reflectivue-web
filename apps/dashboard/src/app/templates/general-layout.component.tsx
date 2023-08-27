@@ -14,6 +14,7 @@ import { TopBar } from '../organisms';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SupportIcon from '@mui/icons-material/Support';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useValidate } from '../utils/data-hooks/auth';
 
 export interface MenuItem {
   name: string;
@@ -25,6 +26,8 @@ export interface MenuItem {
 }
 
 export const GeneralLayout = () => {
+  useValidate();
+
   const menuItems: any[] = [
     {
       title: 'Main Menu',
