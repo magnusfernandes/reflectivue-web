@@ -129,6 +129,7 @@ export const UsersPage = () => {
           loading={isLoading}
           slots={{ toolbar: GridToolbar, loadingOverlay: LinearProgress }}
           columns={columns}
+          disableRowSelectionOnClick
         />
       </Box>
     </Box>

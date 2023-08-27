@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@dashboard-store": ["apps/dashboard/src/store/index.ts"],
       "@shared-helpers": ["libs/shared-helpers/src/index.ts"],
       "@shared-theme": ["libs/shared-theme/src/index.ts"],
       "@shared-ui": ["libs/shared-ui/src/index.ts"]

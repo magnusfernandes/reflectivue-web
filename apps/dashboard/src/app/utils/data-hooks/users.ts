@@ -5,6 +5,7 @@ import makeRequest from './requests';
 import { useNavigate } from 'react-router-dom';
 import { RequestMethod } from '../enum';
 import { RouterPath } from '../../pages/routes-path';
+import { useToast } from '@dashboard-store';
 
 export const useGetAllUsers = (searchValue?: string) => {
   const { data, error, isLoading } = useQuery({
@@ -26,14 +27,16 @@ export const useGetAllUsers = (searchValue?: string) => {
 
 export const useCreateNewUser = () => {
   const navigate = useNavigate();
+  const { showSuccessToast, showErrorToast } = useToast();
 
   return useMutation({
     mutationFn: (formData: UserForm) => {
-      return makeRequest('/users', RequestMethod.POST, true, formData).then(
-        (res) => {
+      return makeRequest('/users', RequestMethod.POST, true, formData)
+        .then((res) => {
+          showSuccessToast('Successfully added a user');
           navigate(RouterPath.users);
-        }
-      );
+        })
+        .catch((error) => showErrorToast(error));
     },
   });
 };

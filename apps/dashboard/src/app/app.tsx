@@ -15,8 +15,16 @@ import {
   UsersPage,
 } from './pages';
 import { UserFormPage } from './pages/users/user-form.page';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeSnackBar } from '../store/slice/toast/toast.slice';
+import { RootState } from '../store/store';
+import { Toast } from '@shared-ui';
 
 export function App() {
+  const snackbarState = useSelector((state: RootState) => state.snackbar);
+  const dispatch = useDispatch();
+  const handleCloseSnackBar = () => dispatch(closeSnackBar());
+
   const privateRoutes: RouteObject[] = [
     {
       path: RouterPath.home,
@@ -66,7 +74,17 @@ export function App() {
 
   const router = createBrowserRouter(privateRoutes);
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <Toast
+        onClose={handleCloseSnackBar}
+        isOpen={snackbarState.isOpen}
+        message={snackbarState.message}
+        type={snackbarState.snackbarType}
+      />
+    </>
+  );
 }
 
 export default App;
