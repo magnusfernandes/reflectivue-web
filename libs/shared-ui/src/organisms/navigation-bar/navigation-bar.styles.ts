@@ -27,6 +27,11 @@ export const useStyles = makeStyles((theme: Theme) => {
       '&:hover': {
         color: '#000',
       },
+      '&:active': {
+        svg: {
+          fill: '#216de8',
+        },
+      },
     },
   };
 });

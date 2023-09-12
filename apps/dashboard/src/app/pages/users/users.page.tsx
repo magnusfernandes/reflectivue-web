@@ -159,6 +159,7 @@ export const UsersPage = () => {
           loading={isLoading}
           slots={{ toolbar: GridToolbar, loadingOverlay: LinearProgress }}
           columns={columns}
+          autoHeight
           disableRowSelectionOnClick
           sx={{
             '& .MuiDataGrid-columnHeaders': {

@@ -2,6 +2,7 @@ import { Box, Divider, Typography, capitalize } from '@mui/material';
 
 import { useStyles } from './navigation-bar.styles';
 import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
 
 export interface NavigationBarProps {
   menuItems: any;
@@ -34,8 +35,14 @@ export const NavigationBar = ({ menuItems, logo }: NavigationBarProps) => {
             })}
             className={classes.sidebarItem}
           >
-            <route.icon style={{ fontSize: '16px', color: '#216de8' }} />
-            <Typography fontSize={'14px'}>{route.name}</Typography>
+            <route.icon
+              style={{
+                fontSize: '16px',
+              }}
+            />
+            <Typography fontSize={'14px'} fontWeight={'500'}>
+              {route.name}
+            </Typography>
           </NavLink>
         ))}
       </Box>
