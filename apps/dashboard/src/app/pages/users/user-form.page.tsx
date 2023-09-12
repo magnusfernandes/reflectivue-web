@@ -91,11 +91,11 @@ export const UserFormPage = () => {
     <Box>
       <Box display={'flex'} gap={1}>
         <NavLink to={RouterPath.users}>
-          <Typography fontSize={'18px'} fontWeight={500} color={'textPrimary'}>
+          <Typography fontSize={'20px'} fontWeight={500} color={'textPrimary'}>
             Users
           </Typography>
         </NavLink>
-        <Typography fontSize={'18px'} fontWeight={500} color={'textPrimary'}>
+        <Typography fontSize={'20px'} fontWeight={500} color={'textPrimary'}>
           / {UserData ? 'Edit' : 'Create new'} user
         </Typography>
       </Box>

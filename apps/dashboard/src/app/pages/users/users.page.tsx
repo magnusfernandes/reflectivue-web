@@ -132,7 +132,7 @@ export const UsersPage = () => {
   return (
     <Box>
       {/* @todo create a common component to display route */}
-      <Typography fontSize={'18px'} color={'#3d4d59'} fontWeight={500}>
+      <Typography fontSize={'20px'} fontWeight={500} color={'textPrimary'}>
         Users
       </Typography>
       <Box
