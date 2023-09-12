@@ -42,7 +42,21 @@ export const useCreateNewUser = () => {
 };
 
 export const useGetUser = (id: string) => {
-  return axios.get(`/users/${id}`);
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['allUsers'],
+    queryFn: async () => {
+      const response = await makeRequest(
+        `/users/${id}`,
+        RequestMethod.GET,
+        true
+      );
+      const data = await response.message.user;
+      return data;
+    },
+    retry: false,
+    refetchOnWindowFocus: false,
+  });
+  return { data, error, isLoading };
 };
 
 export const updateUser = (userFormData: UserForm) => {

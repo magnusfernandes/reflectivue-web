@@ -33,26 +33,26 @@ export const UsersPage = () => {
     {
       field: 'name',
       headerName: 'Name',
-      minWidth: 140,
       type: 'string',
+      flex: 0.3,
     },
     {
       field: 'email',
       headerName: 'Email',
-      minWidth: 240,
       type: 'string',
+      flex: 0.3,
     },
     {
       field: 'phone',
       headerName: 'Phone',
-      minWidth: 140,
       type: 'string',
+      flex: 0.3,
     },
     {
       field: 'role',
       headerName: 'Role',
-      minWidth: 180,
       type: 'string',
+      flex: 0.3,
       renderCell: (field) =>
         field.value ? (
           <Chip
@@ -66,8 +66,8 @@ export const UsersPage = () => {
     {
       field: 'createdAt',
       headerName: 'Created On',
-      minWidth: 300,
       type: 'string',
+      flex: 0.3,
       valueFormatter: (field) =>
         field?.value
           ? DateFns.format(new Date(field.value), 'EEEE, MMMM yyyy')
@@ -77,7 +77,7 @@ export const UsersPage = () => {
       field: 'actions',
       type: 'actions',
       headerName: 'Actions',
-      width: 100,
+      flex: 0.3,
       cellClassName: 'actions',
       getActions: ({ id }) => {
         return [

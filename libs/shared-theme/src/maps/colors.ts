@@ -60,8 +60,8 @@ export const light = {
     A700: '#3e3e6f',
   },
   text: {
-    primary: token.text_light_grey,
-    secondary: token.text_light_grey,
+    primary: token.text_dark_grey,
+    secondary: token.text_medium_grey,
     disabled: token.text_light_grey,
     hint: token.text_light_grey,
   },

@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Box, Snackbar, Typography, alpha, useTheme } from '@mui/material';
+import { Box, Snackbar, Typography, useTheme } from '@mui/material';
 import { NotificationType } from '@shared-helpers';
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 import WarningAmberOutlinedIcon from '@mui/icons-material/WarningAmberOutlined';
