@@ -7,7 +7,6 @@ export const useStyles = makeStyles((theme: Theme) => {
       height: '100vh',
       display: 'flex',
       flexDirection: 'column',
-
       borderRight: '0.5px solid #eeeff2',
       zIndex: 2,
       padding: '1rem',

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { UserForm } from '../interface';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import makeRequest from './requests';
@@ -8,7 +7,7 @@ import { RouterPath } from '../../pages/routes-path';
 import { useToast } from '@dashboard-store';
 
 export const useGetAllUsers = (searchValue?: string) => {
-  const { data, error, isLoading } = useQuery({
+  const { data, error, isLoading, refetch } = useQuery({
     queryKey: ['allUsers'],
     queryFn: async () => {
       const response = await makeRequest(
@@ -22,7 +21,7 @@ export const useGetAllUsers = (searchValue?: string) => {
     retry: false,
     refetchOnWindowFocus: false,
   });
-  return { data, error, isLoading };
+  return { data, error, isLoading, refetch };
 };
 
 export const useCreateNewUser = () => {
@@ -71,13 +70,23 @@ export const useUpdateUser = () => {
         payload.formData
       )
         .then((res) => {
-          showSuccessToast('Successfully added a user');
+          showSuccessToast('Successfully updated the user');
         })
         .catch((error) => showErrorToast(error));
     },
   });
 };
 
-export const deleteUser = (id: string) => {
-  return axios.delete(`/users/${id}`);
+export const useDeleteUser = () => {
+  const { showSuccessToast, showErrorToast } = useToast();
+
+  return useMutation({
+    mutationFn: (id: string) => {
+      return makeRequest(`/users/${id}`, RequestMethod.DELETE, true)
+        .then((res) => {
+          showSuccessToast('Successfully deleted the user');
+        })
+        .catch((error) => showErrorToast(error));
+    },
+  });
 };
