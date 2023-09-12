@@ -7,6 +7,7 @@ export enum RouterPath {
   organisation = '/organisation',
   kiosks = '/kiosks',
   devices = '/devices',
+  deviceNew = '/device',
   locations = '/locations',
   login = '/login',
 }

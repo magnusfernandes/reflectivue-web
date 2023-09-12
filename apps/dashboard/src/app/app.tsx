@@ -7,6 +7,7 @@ import { RouterPath } from './pages/routes-path';
 import { GeneralLayout } from './templates';
 import {
   DashboardPage,
+  DeviceFormPage,
   DevicesPage,
   KiosksPage,
   LocationsPage,
@@ -63,6 +64,10 @@ export function App() {
         {
           path: RouterPath.devices,
           element: <DevicesPage />,
+        },
+        {
+          path: RouterPath.deviceNew,
+          element: <DeviceFormPage />,
         },
       ],
     },

@@ -1,21 +1,21 @@
-import { UserForm } from '../interface';
+import { DeviceForm } from '../interface';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import makeRequest from './requests';
 import { useNavigate } from 'react-router-dom';
 import { RequestMethod } from '../enum';
 import { RouterPath } from '../../pages/routes-path';
-import { useToast } from '@dashboard-store';
+import { useToast } from '../../../store/slice/toast/use-toast';
 
-export const useGetAllUsers = (searchValue?: string) => {
+export const useGetAllDevices = () => {
   const { data, error, isLoading, refetch } = useQuery({
-    queryKey: ['allUsers'],
+    queryKey: ['allDevices'],
     queryFn: async () => {
       const response = await makeRequest(
-        `/users/list?q=${searchValue ? searchValue : ''}`,
+        `/devices/list`,
         RequestMethod.POST,
         true
       );
-      const data = await response.message.users;
+      const data = await response.message.devices;
       return data;
     },
     retry: false,
@@ -24,28 +24,28 @@ export const useGetAllUsers = (searchValue?: string) => {
   return { data, error, isLoading, refetch };
 };
 
-export const useCreateNewUser = () => {
+export const useCreateNewDevice = () => {
   const navigate = useNavigate();
   const { showSuccessToast, showErrorToast } = useToast();
 
   return useMutation({
-    mutationFn: (formData: UserForm) => {
-      return makeRequest('/users', RequestMethod.POST, true, formData)
+    mutationFn: (formData: DeviceForm) => {
+      return makeRequest('/devices', RequestMethod.POST, true, formData)
         .then((res) => {
-          showSuccessToast('Successfully added a user');
-          navigate(RouterPath.users);
+          showSuccessToast('Successfully added a device');
+          navigate(RouterPath.devices);
         })
         .catch((error) => showErrorToast(error));
     },
   });
 };
 
-export const useGetUser = (id: string) => {
+export const useGetDevice = (id: string) => {
   const { data, error, isLoading } = useQuery({
-    queryKey: ['getUser'],
+    queryKey: ['allDevices'],
     queryFn: async () => {
       const response = await makeRequest(
-        `/users/${id}`,
+        `/devices/${id}`,
         RequestMethod.GET,
         true
       );
@@ -58,33 +58,33 @@ export const useGetUser = (id: string) => {
   return { data, error, isLoading };
 };
 
-export const useUpdateUser = () => {
+export const useUpdateDevice = () => {
   const { showSuccessToast, showErrorToast } = useToast();
 
   return useMutation({
-    mutationFn: (payload: { formData: UserForm; id: string }) => {
+    mutationFn: (payload: { formData: DeviceForm; id: string }) => {
       return makeRequest(
-        `/users/${payload.id}`,
+        `/devices/${payload.id}`,
         RequestMethod.PATCH,
         true,
         payload.formData
       )
         .then((res) => {
-          showSuccessToast('Successfully updated the user');
+          showSuccessToast('Successfully updated the device');
         })
         .catch((error) => showErrorToast(error));
     },
   });
 };
 
-export const useDeleteUser = () => {
+export const useDeleteDevice = () => {
   const { showSuccessToast, showErrorToast } = useToast();
 
   return useMutation({
     mutationFn: (id: string) => {
-      return makeRequest(`/users/${id}`, RequestMethod.DELETE, true)
+      return makeRequest(`/devices/${id}`, RequestMethod.DELETE, true)
         .then((res) => {
-          showSuccessToast('Successfully deleted the user');
+          showSuccessToast('Successfully deleted the device');
         })
         .catch((error) => showErrorToast(error));
     },
