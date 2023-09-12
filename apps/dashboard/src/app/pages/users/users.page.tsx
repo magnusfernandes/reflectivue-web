@@ -5,12 +5,19 @@ import {
   GridActionsCellItem,
   GridRowId,
 } from '@mui/x-data-grid';
-import { Box, Button, Chip, LinearProgress, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Chip,
+  LinearProgress,
+  Typography,
+  useTheme,
+} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { RouterPath } from '../routes-path';
 import { SearchInput } from '@shared-ui';
 import { useGetAllUsers } from '../../utils/data-hooks';
-import EditIcon from '@mui/icons-material/Edit';
+import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import { useNavigate } from 'react-router-dom';
 import * as DateFns from 'date-fns';
@@ -20,6 +27,7 @@ import { userRoles } from '../../utils/constants';
 export const UsersPage = () => {
   const { data, isLoading, error } = useGetAllUsers();
   const navigate = useNavigate();
+  const { palette } = useTheme();
 
   const handleEditClick = (id: GridRowId) => () => {
     navigate(`${RouterPath.userNew}/${id}`);
@@ -58,6 +66,10 @@ export const UsersPage = () => {
           <Chip
             label={userRoles[field.value as UserRoles]}
             variant={field.value === UserRoles.admin ? 'filled' : 'outlined'}
+            color={'primary'}
+            sx={{
+              width: '100px',
+            }}
           />
         ) : (
           ''
@@ -82,14 +94,14 @@ export const UsersPage = () => {
       getActions: ({ id }) => {
         return [
           <GridActionsCellItem
-            icon={<EditIcon />}
+            icon={<CreateOutlinedIcon sx={{ color: palette.text.secondary }} />}
             label="Edit"
             className="textPrimary"
             onClick={handleEditClick(id)}
             color="inherit"
           />,
           <GridActionsCellItem
-            icon={<DeleteIcon />}
+            icon={<DeleteIcon sx={{ color: palette.text.secondary }} />}
             label="Delete"
             onClick={handleDeleteClick(id)}
             color="inherit"
@@ -130,6 +142,18 @@ export const UsersPage = () => {
           slots={{ toolbar: GridToolbar, loadingOverlay: LinearProgress }}
           columns={columns}
           disableRowSelectionOnClick
+          sx={{
+            '& .MuiDataGrid-columnHeaders': {
+              backgroundColor: palette.grey[100],
+            },
+            '& .MuiDataGrid-toolbarContainer': {
+              paddingY: '10px',
+              gap: '40px',
+            },
+            '& .MuiDataGrid-columnHeaderTitle': {
+              fontWeight: 600,
+            },
+          }}
         />
       </Box>
     </Box>

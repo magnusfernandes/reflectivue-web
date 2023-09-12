@@ -32,6 +32,7 @@ export const snackbarSlice = createSlice({
       ...state,
       ...action.payload,
       isOpen: true,
+      snackbarType: action.payload.type,
     }),
     closeSnackBar: (state) => ({
       ...state,

@@ -13,7 +13,11 @@ import { UserForm, userRoles } from '../../utils';
 import { UserEntrySchema } from './users.utils';
 import { NavLink, useParams } from 'react-router-dom';
 import { RouterPath } from '../routes-path';
-import { useCreateNewUser, useGetUser } from '../../utils/data-hooks';
+import {
+  useCreateNewUser,
+  useGetUser,
+  useUpdateUser,
+} from '../../utils/data-hooks';
 import { InputPhone } from '@shared-ui';
 import { ObjectTypedKeys } from '@shared-helpers';
 import { useEffect } from 'react';
@@ -35,6 +39,7 @@ export const UserFormPage = () => {
     },
   });
   const createNewUserMutation = useCreateNewUser();
+  const updateUserMutation = useUpdateUser();
   const { id: userId } = useParams<{ id: string }>();
   const { data: UserData } = useGetUser(userId ?? '');
 
@@ -50,6 +55,13 @@ export const UserFormPage = () => {
   }, [UserData]);
 
   const onSubmit = (data: UserForm) => {
+    if (UserData && userId) {
+      updateUserMutation.mutate({
+        formData: data,
+        id: userId,
+      });
+      return;
+    }
     createNewUserMutation.mutate(data);
   };
 

@@ -23,20 +23,21 @@ export const Toast = ({
 }: ToastProps) => {
   const theme = useTheme();
 
-  const toastIcon = useMemo(() => {
+  const toastIcon = () => {
+    console.log(type);
     if (type === NotificationType.error) {
       return <ErrorOutlineOutlinedIcon sx={{ color: '#fff' }} />;
     }
     if (type === NotificationType.info) {
-      return <InfoOutlinedIcon />;
+      return <InfoOutlinedIcon sx={{ color: '#fff' }} />;
     }
     if (type === NotificationType.warning) {
-      return <WarningAmberOutlinedIcon />;
+      return <WarningAmberOutlinedIcon sx={{ color: '#fff' }} />;
     }
-    return <CheckCircleOutlineOutlinedIcon />;
-  }, [type]);
+    return <CheckCircleOutlineOutlinedIcon sx={{ color: '#fff' }} />;
+  };
 
-  const toastColor = useMemo(() => {
+  const toastColor = () => {
     if (type === NotificationType.error) {
       return theme.palette.error.main;
     }
@@ -47,7 +48,7 @@ export const Toast = ({
       return theme.palette.warning.main;
     }
     return theme.palette.success.main;
-  }, [type]);
+  };
 
   return (
     <Snackbar
@@ -62,12 +63,12 @@ export const Toast = ({
         p={1}
         borderRadius={'4px'}
         sx={{
-          backgroundColor: toastColor,
+          backgroundColor: toastColor(),
         }}
       >
         <Box display="flex" alignItems="center" gap={1}>
           <Box display="flex" alignItems="center" flexShrink={1}>
-            {toastIcon}
+            {toastIcon()}
           </Box>
           <Typography variant="subtitle1" color="white" fontSize={'12px'}>
             {message}

@@ -12,7 +12,7 @@ body {
 }
 
 *::-webkit-scrollbar {
-  width: 1.4rem; /* width of the entire scrollbar */
+  width: '10px';
 }
 
 *::-webkit-scrollbar-track {
@@ -23,6 +23,7 @@ body {
   background-color: #8686a5; /* color of the scroll thumb */
   border-radius: 20px; /* roundness of the scroll thumb */
   border: 4px solid #f9f9f9; /* creates padding around scroll thumb */
+  width: '10px';
 }
 
 /* makes img undraggable */

@@ -59,8 +59,23 @@ export const useGetUser = (id: string) => {
   return { data, error, isLoading };
 };
 
-export const updateUser = (userFormData: UserForm) => {
-  return axios.patch(`/users/${userFormData.id}`, userFormData);
+export const useUpdateUser = () => {
+  const { showSuccessToast, showErrorToast } = useToast();
+
+  return useMutation({
+    mutationFn: (payload: { formData: UserForm; id: string }) => {
+      return makeRequest(
+        `/users/${payload.id}`,
+        RequestMethod.PATCH,
+        true,
+        payload.formData
+      )
+        .then((res) => {
+          showSuccessToast('Successfully added a user');
+        })
+        .catch((error) => showErrorToast(error));
+    },
+  });
 };
 
 export const deleteUser = (id: string) => {
